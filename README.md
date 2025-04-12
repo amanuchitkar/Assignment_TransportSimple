@@ -99,7 +99,7 @@ Assignment_TransportSimple/
 ![Home Page](static/images/home.png)
 *The main page displays all questions.*
 
-![Question Detail](static/images/answers.png)
+![Question Detail](static/images/questions.png)
 *Detailed view of a question with answers.*
 
 ![Answer Section](static/images/answers.png)  
