@@ -95,7 +95,7 @@ Assignment_TransportSimple/
 
 ## Screenshots
 
-```
+
 ![Home Page](static\images\home.png)
 *The main page displaying all questions.*
 
@@ -107,7 +107,7 @@ Assignment_TransportSimple/
 
 ![Login Page](static\images\login.png)  
 *User login interface for accessing the platform.*
-```
+
 
 ## Acknowledgments
 
