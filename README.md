@@ -37,7 +37,7 @@ A professional Q&A platform built with Django that allows users to ask questions
 1. Clone the repository
    ```
    git clone https://github.com/amanuchitkar/Assignment_TransportSimple.git
-   cd knowledge-hub
+   cd Assignment_TransportSimple
    ```
 
 2. Create and activate virtual environment
