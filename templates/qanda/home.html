@@ -1,0 +1,70 @@
+{% extends 'qanda/base.html' %}
+
+{% block content %}
+    <div class="hero">
+        <h1>Welcome to KnowledgeHub</h1>
+        <p>The premier platform for sharing knowledge and learning from others. Ask questions, provide answers, and expand your understanding.</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'question_create' %}" class="btn-primary">
+                <i class="fas fa-question-circle"></i> Ask Your Question
+            </a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="heading">
+        <i class="fas fa-fire"></i> Trending Questions
+    </div>
+    {% if questions %}
+        {% for question in questions %}
+            <div class="question-card">
+                <div class="question-title">
+                    <a href="{% url 'question_detail' question.pk %}">{{ question.title }}</a>
+                </div>
+                <div class="question-meta">
+                    <div class="question-author">
+                        <i class="fas fa-user"></i> {{ question.author.username }}
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar-alt"></i> {{ question.date_posted|date:"F d, Y" }}
+                    </div>
+                </div>
+                <div class="question-content">
+                    {{ question.content|truncatewords:50 }}
+                </div>
+                <div class="card-footer">
+                    <div class="answer-count">
+                        <i class="fas fa-comments"></i> {{ question.answers.count }} Answers
+                    </div>
+                    <a href="{% url 'question_detail' question.pk %}" class="view-link">
+                        View Discussion <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="question-card" style="text-align: center; padding: 40px 20px;">
+            <i class="fas fa-question" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+            <h3 style="margin-bottom: 15px; color: var(--primary);">No questions yet</h3>
+            <p>Be the first to start a discussion by asking a question!</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'question_create' %}" class="btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-plus-circle"></i> Ask the First Question
+                </a>
+            {% else %}
+                <p style="margin-top: 20px;">Please <a href="{% url 'login' %}" style="color: var(--primary); font-weight: 500;">login</a> to ask a question.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    {% if user.is_authenticated and questions %}
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{% url 'question_create' %}" class="btn-primary">
+                <i class="fas fa-plus-circle"></i> Ask a New Question
+            </a>
+        </div>
+    {% endif %}
+{% endblock %} 

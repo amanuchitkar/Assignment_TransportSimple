@@ -1,0 +1,100 @@
+{% extends 'qanda/base.html' %}
+
+{% block content %}
+    <div class="question-card" style="border-left: 4px solid var(--primary);">
+        <div class="question-title" style="font-size: 1.5rem;">
+            {{ question.title }}
+        </div>
+        <div class="question-meta">
+            <div class="question-author">
+                <i class="fas fa-user-circle"></i> {{ question.author.username }}
+            </div>
+            <div class="date">
+                <i class="far fa-calendar-alt"></i> {{ question.date_posted|date:"F d, Y" }}
+            </div>
+        </div>
+        <div class="question-content">
+            {{ question.content }}
+        </div>
+    </div>
+    
+    <div class="heading" style="margin-top: 30px;">
+        <i class="fas fa-comments"></i> Answers ({{ answers.count }})
+    </div>
+    
+    {% if answers %}
+        {% for answer in answers %}
+            <div class="answer-card">
+                <div class="question-content">
+                    {{ answer.content }}
+                </div>
+                <div class="question-meta" style="margin-top: 15px; margin-bottom: 5px;">
+                    <div class="question-author">
+                        <i class="fas fa-user-circle"></i> {{ answer.author.username }}
+                    </div>
+                    <div class="date">
+                        <i class="far fa-calendar-alt"></i> {{ answer.date_posted|date:"F d, Y" }}
+                    </div>
+                </div>
+                <div class="like-section">
+                    <div class="like-count">
+                        <i class="fas fa-heart"></i> {{ answer.total_likes }}
+                    </div>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'like_answer' answer.pk %}" method="POST" style="display: inline; margin: 0;">
+                            {% csrf_token %}
+                            <button type="submit" class="like-button {% if user in answer.likes.all %}liked{% endif %}">
+                                <i class="{% if user in answer.likes.all %}fas{% else %}far{% endif %} fa-heart"></i>
+                                {% if user in answer.likes.all %}Unlike{% else %}Like{% endif %}
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="answer-card" style="text-align: center; padding: 30px;">
+            <i class="far fa-comment-dots" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px;"></i>
+            <p>No answers yet. Be the first to answer!</p>
+        </div>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+        <div class="heading" style="margin-top: 30px;">
+            <i class="fas fa-pen"></i> Your Answer
+        </div>
+        <div class="question-card">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ answer_form.content.label_tag }}
+                    {{ answer_form.content }}
+                    {% if answer_form.content.errors %}
+                        <ul class="errorlist">
+                            {% for error in answer_form.content.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <small class="help-text">Share your knowledge to help others learn.</small>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> Post Answer
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <div class="question-card" style="text-align: center; padding: 25px; margin-top: 30px;">
+            <p style="margin-bottom: 15px;">Please <a href="{% url 'login' %}" style="color: var(--primary); font-weight: 500;">login</a> to answer this question.</p>
+            <a href="{% url 'login' %}" class="btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login to Answer
+            </a>
+        </div>
+    {% endif %}
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'home' %}" class="btn-primary" style="background-color: #6c757d;">
+            <i class="fas fa-arrow-left"></i> Back to Questions
+        </a>
+    </div>
+{% endblock %} 
