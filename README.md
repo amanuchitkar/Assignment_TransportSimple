@@ -36,7 +36,7 @@ A professional Q&A platform built with Django that allows users to ask questions
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/knowledge-hub.git
+   git clone https://github.com/amanuchitkar/Assignment_TransportSimple.git
    cd knowledge-hub
    ```
 
@@ -71,7 +71,7 @@ A professional Q&A platform built with Django that allows users to ask questions
 ## Project Structure
 
 ```
-knowledge-hub/
+Assignment_TransportSimple/
 ├── qanda/               # Main app for Q&A functionality
 ├── quora_clone/         # Project settings
 ├── templates/           # HTML templates
@@ -95,11 +95,19 @@ knowledge-hub/
 
 ## Screenshots
 
-[Include screenshots of key pages here]
+```
+![Home Page](static\images\home.png)
+*The main page displaying all questions.*
 
-## License
+![Question Detail](static\images\questions.png)
+*Detailed view of a question with answers.*
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+![Answer Section](static\images\answers.png)  
+*View and interact with answers for a specific question.*
+
+![Login Page](static\images\login.png)  
+*User login interface for accessing the platform.*
+```
 
 ## Acknowledgments
 
