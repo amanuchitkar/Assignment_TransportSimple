@@ -96,17 +96,17 @@ Assignment_TransportSimple/
 ## Screenshots
 
 
-![Home Page](static\images\home.png)
-*The main page displaying all questions.*
+![Home Page](static/images/home.png)
+*The main page displays all questions.*
 
-![Question Detail](static\images\questions.png)
+![Question Detail](static/images/answers.png)
 *Detailed view of a question with answers.*
 
-![Answer Section](static\images\answers.png)  
+![Answer Section](static/images/answers.png)  
 *View and interact with answers for a specific question.*
 
-![Login Page](static\images\login.png)  
-*User login interface for accessing the platform.*
+![Login Page](static/images/login.png)  
+*User login interface is used to access the platform.*
 
 
 ## Acknowledgments
