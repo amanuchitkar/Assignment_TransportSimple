@@ -112,7 +112,3 @@ Assignment_TransportSimple/
 ## Acknowledgments
 
 - Developed by [Aman Uchitkar](https://github.com/amanuchitkar)
-<<<<<<< HEAD
-=======
-- Created as a learning project to demonstrate Django capabilities 
->>>>>>> d43eda112a1631b0062b3e4602bf40c3e9cd40f4
